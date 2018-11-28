@@ -8,18 +8,12 @@ import org.testng.annotations.Test;
 
 public class PositiveTests {
 
-
-
-    private boolean checkOS (){
-        if (System.getenv().toString().startsWith("Win")){
-            return false;
-        }
-        else
-            return true;
-    }
     @Test
     public void loginTest() {
 
+
+        System.out.println(OSUtils.os);
+        OSUtils.setDriverResources();
 
         // scenario
         // initialize driver
@@ -28,7 +22,7 @@ public class PositiveTests {
         // press login
         // verification (new url , log out visible , login message
         //System.setProperty("webdriver.chrome.driver", "/Users/krojiktheloved/IdeaProjects/easymode-borbus-tools/src\\main\\resources\\chromedriver");
-        System.setProperty("webdriver.chrome.driver", "/Users/krojiktheloved/IdeaProjects/easymode-borbus-tools/src/main/resources/chromedriver");
+//        System.setProperty("webdriver.chrome.driver", "/Users/krojiktheloved/IdeaProjects/easymode-borbus-tools/src/main/resources/chromedriver");
         //System.setProperty("webdriver.chrome.driver", "/src/main/resources/chromedriver");
 
 
