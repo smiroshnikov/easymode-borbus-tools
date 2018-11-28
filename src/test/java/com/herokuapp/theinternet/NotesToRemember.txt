@@ -3,4 +3,9 @@
 This code inside static block is executed only once: the first time you make an object of that class or the first time you access a static
 member of that class (even if you never make an object of that class)
 3. Generally exceptions are expensive operations and as the name would suggest, exceptional conditions. So using them in the context of controlling
-the flow of your application is indeed considered bad practice.
+the flow of your application is indeed c nsidered bad practice.
+4. to verify XPATH in console use this as an example :
+$x("//a[@sdcc_auto='main_menu_portal_admin']")
+5. Check if there is REALLY a necessity to use XPATH .
+//driver.findElement(By.name("password")).sendKeys("******");
+//driver.findElement(By.name("username")).sendKeys("twister@******.com");

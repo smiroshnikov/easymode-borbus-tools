@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 public class PositiveTests {
 
     static WebDriver driver;
-    static private boolean TESTFLAG = false;
+    static private String URL = "http://the-internet.herokuapp.com/login";
 
     @BeforeTest
     public static void setUp() {
@@ -27,15 +27,36 @@ public class PositiveTests {
         driver.quit();
     }
 
+
+    @Test
+    public void CreateAccount() {
+        sdccLogin("twister@example.com","******");
+        clickOnAdminMenu();
+        gotoAccountScreen();
+
+
+    }
+
+    public void sdccLogin(String username, String password) {
+        driver.get("http://10.20.4.167/login");
+        driver.findElement(By.xpath("//input[@name='username']")).sendKeys(username);
+        driver.findElement(By.xpath("//input[@name='password']")).sendKeys(password);
+        driver.findElement(By.className("btnLogin")).click();
+        driver.manage().window().maximize();
+    }
+    public void clickOnAdminMenu() {
+        driver.findElement(By.xpath("//div[@sdcc_auto='main_menu']")).click();
+    }
+    public void gotoAccountScreen() {
+        driver.findElement(By.xpath("//a[@sdcc_auto='main_menu_portal_admin']")).click();
+    }
+
     @Test
     public void loginTest() {
-        stayAWhileAndListen(3);
-        System.out.println("Starting test ....");
+
         driver.manage().window().maximize();
-        String URL = "http://the-internet.herokuapp.com/login";
         driver.get(URL);
-        stayAWhileAndListen(5);
-        System.out.println("Page is opened ");
+
 
         WebElement userName = driver.findElement(By.xpath("//input[@id='username']"));
         userName.sendKeys("tomsmith");
@@ -47,35 +68,12 @@ public class PositiveTests {
 
         String expectedURL = "http://the-internet.herokuapp.com/secure";
         String actualURL = driver.getCurrentUrl();
-
-//        try {
-            Assert.assertEquals(actualURL, expectedURL);
-//        } catch (AssertionError ae) {
-//            ae.printStackTrace();
-//        }
-
-
+        Assert.assertEquals(actualURL, expectedURL);
         WebElement successMessage = driver.findElement(By.id("flash"));
-        Assert.assertFalse(successMessage.isDisplayed());
+        Assert.assertTrue(successMessage.isDisplayed());
         //TODO read NotesToRemember #3
 
         logOutButton.click();
 
     }
-
-
-    /**
-     * static sleep
-     *
-     * @param millis amount of milliseconds to sleep
-     */
-    private void stayAWhileAndListen(long millis) {
-        try {
-            Thread.sleep(millis);
-            // bad practice , 4 stars
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
