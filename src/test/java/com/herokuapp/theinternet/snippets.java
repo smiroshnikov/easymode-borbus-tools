@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class OS_Choice {
+public class snippets {
 
 
     private static List<String> generateOSList() {

@@ -43,6 +43,7 @@ public class OSUtils {
     }
 
     static {
+        // TODO see NotesToRemeber.txt for more info
         try {
             String osName = System.getProperty("os.name");
             if (osName == null) {
